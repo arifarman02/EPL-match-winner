@@ -8,6 +8,17 @@ matches = pd.DataFrame()
 csv_file_list = os.listdir('./EPL_23-24_season')
 csv_file_list.sort() # Sort by league position
 
+# An empty list to concat into pandas dataframe
+all_dfs = []
+
+# Loop through each file in the csv list and read each into a pandas dataframe and append them into all_dsf list
 for csv_file in csv_file_list:
-    match = pd.read_csv(csv_file)
-    matches = matches.append(match, ignore_index = True)
+    full_path = os.path.join('./EPL_23-24_season', csv_file) # CSV file is in a different directory
+    match = pd.read_csv(full_path, encoding='latin-1')
+    all_dfs.append(match)
+
+# Combine all the dataframes into one
+matches = pd.concat(all_dfs, ignore_index=True)
+
+# Save the comined dataframe into a csv file
+matches.to_csv('matches.csv', index=False)
