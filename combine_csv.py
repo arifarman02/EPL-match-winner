@@ -13,7 +13,8 @@ all_dfs = []
 
 # Loop through each file in the csv list and read each into a pandas dataframe and append them into all_dsf list
 for csv_file in csv_file_list:
-    team_name = csv_file.rstrip('.csv')
+    team_name = csv_file.removesuffix('.csv')
+    team_name = team_name[3:]
     full_path = os.path.join('./EPL_23-24_season', csv_file) # CSV file is in a different directory
     match = pd.read_csv(full_path, encoding='latin-1')
     match['Team'] = team_name
@@ -24,7 +25,8 @@ second_csv_file_list = os.listdir('./EPL_24-25_season')
 second_csv_file_list.sort()
 
 for csv_file in second_csv_file_list:
-    team_name = csv_file.rstrip('.csv')
+    team_name = csv_file.removesuffix('.csv')
+    team_name = team_name[3:]
     full_path = os.path.join('./EPL_24-25_season', csv_file)
     match = pd.read_csv(full_path, encoding='latin-1')
     match['Team'] = team_name
