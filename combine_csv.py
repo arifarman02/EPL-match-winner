@@ -17,6 +17,7 @@ for csv_file in csv_file_list:
     team_name = team_name[3:]
     full_path = os.path.join('./EPL_23-24_season', csv_file) # CSV file is in a different directory
     match = pd.read_csv(full_path, encoding='latin-1')
+    match['Season'] = '23-24'
     match['Team'] = team_name
     all_dfs.append(match)
 
@@ -29,6 +30,7 @@ for csv_file in second_csv_file_list:
     team_name = team_name[3:]
     full_path = os.path.join('./EPL_24-25_season', csv_file)
     match = pd.read_csv(full_path, encoding='latin-1')
+    match['Season'] = '23-24'
     match['Team'] = team_name
     all_dfs.append(match)
 
